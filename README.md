@@ -1,4 +1,4 @@
-This repository allows to reproduce angular bug ""ng serve" doesn't react on changes in d.ts files."
+### This repository allows to reproduce angular bug ""ng serve" doesn't react on changes in d.ts files."
 
 
 ### Description
