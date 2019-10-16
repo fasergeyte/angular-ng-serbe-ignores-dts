@@ -1,3 +1,3 @@
 interface ISomeInterface {
   func: () => void;
-}
+} 

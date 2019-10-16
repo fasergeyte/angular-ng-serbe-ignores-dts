@@ -1,27 +1,22 @@
-# NgServeAndDts
+This repository allows to reproduce angular bug ""ng serve" doesn't react on changes in d.ts files."
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
 
-## Development server
+### Description
+"ng serve" doesn't react on changes in d.ts files.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## 🔬 Minimal Reproduction
+### Precondition:
+1. Clone repository: https://github.com/VlasovSergey/angular-ng-serbe-ignores-dts.git
+2. run `npm install`
+3. run `ng serve`
+4. comment `func: () => void;` in file `src\typings.ts`
+*Expected:*  'ng serve' runs build and shows an error because `module.ts` uses function func.
+*Actual:* 'ng serve' do nothing.
 
-## Code scaffolding
+5. re-run `ng serve` (it shows error).
+6. make any change in main.ts but don't fix the error (`ng serve` rebuild project and show error correctly)
+7. uncomment `func: () => void;` in file `src\typings.ts`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+*Expected:* `ng serve` rebuilds the project and the error disappears.
+*Actual:* 'ng serve' do nothing. Moreover, if I trigger `ng serve` again (by changing main.ts) the error will be still here.
+    
